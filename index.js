@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const port = 8000;
 
 // Reading through POST request
-// app.use(express.urlencoded);
+app.use(express.urlencoded());
 
 // Cookie parser
 app.use(cookieParser());

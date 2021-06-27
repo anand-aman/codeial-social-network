@@ -22,10 +22,9 @@ module.exports.signIn = function(req, res){
 
 // get the sign up date
 module.exports.create = function(req, res){
-    console.log("Inside create method")
     console.log(req.body);
     if (req.body.password != req.body.confirm_password){
-        return res.rediret('back');
+        return res.redirect('back');
     }
 
     User.findOne({email: req.body.email}, function(err, user){
@@ -38,12 +37,13 @@ module.exports.create = function(req, res){
             User.create(req.body, function(err, user){
                 if(err){
                     console.log('Error in creating user while signing up');
-                    return res.redirect('/users/sign-in');
+                    return;
                 }
+                return res.redirect('/users/sign-in');
             });
         }
         else{
-            return res.rediret('back');
+            return res.redirect('back');
         }
     });
 };
