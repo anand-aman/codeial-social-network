@@ -10,6 +10,8 @@ router.get('/sign-in', usersController.signIn);
 router.post('/create', usersController.create);
 // Sign In
 router.post('/create-session', usersController.createSession);
+// Sign Out
+router.get('/sign-out', usersController.signOut);
 
 const postsController = require('../controllers/posts_controller');
 router.post('/posts', postsController.posts);

@@ -93,3 +93,9 @@ module.exports.createSession = function(req, res){
         }
     });
 };
+
+// sign out functionality
+module.exports.signOut = function(req, res){
+    res.clearCookie('user_id');
+    return res.redirect('/users/sign-in');
+};
