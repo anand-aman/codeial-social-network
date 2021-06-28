@@ -1,9 +1,27 @@
 const User = require('../models/user');
 
 module.exports.profile = function(req, res){
-    return res.render('user_profile',{
-        title: 'User Profile'
-    }); 
+    console.log("Profile Page");
+    if(!req.cookies.user_id){
+        return res.redirect('/users/sign-in');
+    }
+
+    User.findOne({_id: req.cookies.user_id}, function(err, user){
+        if(err){
+            console.log("Error in finding the user in signing in");
+            return;
+        }
+        if(user){
+            return res.render('user_profile',{
+                title: 'User Profile',
+                user: user
+            }); 
+        }
+        else{
+            console.log("User not found");
+            return res.redirect('back');
+        }
+    });
 }
 
 // render sign up page
